@@ -1,0 +1,43 @@
+## 服务端口配置
+server:
+  port: 8801
+spring:
+  application:
+    name: account-service
+  cloud:
+    nacos:
+      config:
+        namespace: mytest
+        server-addr: 192.168.91.1:8848
+        #        file-extension: yaml
+        group: DEFAULT_GROUP
+        shared-configs:
+          - data-id: datasource.yaml
+      discovery:
+        server-addr: 192.168.91.1:8848
+        namespace: mytest
+
+
+
+#seata配置
+seata:
+  tx-service-group: test-seata-group
+  config:
+    type: nacos
+    nacos:
+      server-addr: 192.168.91.1
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 192.168.91.1
+
+### mybatis-plus
+#mybatis-plus:
+#  mapper-locations:
+#    - classpath:/mappers/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+##
+###logger配置
+logging:
+  config: classpath:logback.xml

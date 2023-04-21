@@ -1,0 +1,18 @@
+server:
+  port: 8088
+spring:
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 192.168.91.1:8848
+        username: nacos
+        password: nacos
+  application:
+    name: grpc_client
+grpc:
+  client:
+    grpc_server:
+      negotiation-type: plaintext
+      enable-keep-alive: true
+      keep-alive-without-calls: true

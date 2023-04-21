@@ -1,0 +1,15 @@
+grpc:
+  server:
+    port: 3333
+server:
+  port: 2223
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.91.1:8848
+        username: nacos
+        password: nacos
+        enabled: true
+  application:
+    name: grpc_server

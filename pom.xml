@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>work.xingbili</groupId>
+    <artifactId>personal-practice-prj</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+
+        <module>account-service</module>
+        <module>common-service</module>
+        <module>order-service</module>
+        <module>stock-service</module>
+        <module>gateway-service</module>
+        <module>grpc-api</module>
+        <module>grpc-client</module>
+        <module>grpc-server</module>
+        <module>cloud-service-8801</module>
+        <module>transaction-propagation-test</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <junit.version>4.12</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <lombok.version>1.18.24</lombok.version>
+        <mysql.version>8.0.19</mysql.version>
+        <druid.version>1.2.16</druid.version>
+        <mybatis.spring.boot.version>3.0.1</mybatis.spring.boot.version>
+        <spring-cloud.version>2022.0.0</spring-cloud.version>
+        <spring-cloud-alibaba.version>2022.0.0.0-RC1</spring-cloud-alibaba.version>
+        <spring-boot.version>3.0.1</spring-boot.version>
+        <skipTests>true</skipTests>
+    </properties>
+    <!-- 许可管理 -->
+    <licenses>
+        <!--       <license> -->
+        <!--          -->
+        <!--       </license> -->
+    </licenses>
+    <!-- 开发人员 -->
+    <developers>
+        <developer>
+            <name>xinghuolin</name>
+            <email>xinghuolin@qq.com</email>
+            <!--             <organization>Pivotal Software, Inc.</organization> -->
+            <!--             <organizationUrl>https://www.spring.io</organizationUrl> -->
+        </developer>
+    </developers>
+    <!-- 代码仓库信息 -->
+    <scm>
+        <!--         <url></url> -->
+        <!--         <connection></connection> -->
+        <!--         <developerConnection></developerConnection> -->
+        <!--         <tag></tag> -->
+    </scm>
+    <!-- 依赖继承管理，以此为父工程的项目，无需自己添加依赖会自动使用此处的依赖 -->
+    <dependencies> </dependencies>
+    <!-- 版本管理，子项目版本统一管理 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- spring boot 2.2.2 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- spring cloud Hoxton.SR1 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- spring cloud alibaba 2.1.0.RELEASE -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>3.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <optional>true</optional>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <!-- build插件配置 -->
+    <build>
+        <!--         <pluginManagement> -->
+        <!--             <plugins> -->
+        <!--                 <plugin> -->
+        <!--                     <groupId>org.springframework.boot</groupId> -->
+        <!--                     <artifactId>spring-boot-maven-plugin</artifactId> -->
+        <!--                     <version>3.0.0</version> -->
+        <!--                 </plugin> -->
+        <!--             </plugins> -->
+        <!--         </pluginManagement> -->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!--                             <fork>true</fork> -->
+                    <addResources>true</addResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <!-- 私服配置 -->
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <url>http://10.30.4.51:8081/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+    <!--      安装部署至私服上：mvn clean install -Dmaven.test.skip=true deploy  -->
+    <!--         <distributionManagement> -->
+    <!--             <repository> -->
+    <!--                 <id>releases</id> -->
+    <!--                 <url>http://10.30.4.51:8081/nexus/content/repositories/releases</url> -->
+    <!--             </repository> -->
+    <!--             <snapshotRepository> -->
+    <!--                 <id>snapshots</id> -->
+    <!--                 <url>http://10.30.4.51:8081/nexus/content/repositories/snapshots</url> -->
+    <!--             </snapshotRepository> -->
+    <!--         </distributionManagement> -->
+</project>
